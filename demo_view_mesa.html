@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SB Admin - Login</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+
+  <script type="text/javascript">
+      
+      var cadVariables = location.search.substring(1,location.search.length);
+      var arrVariables = cadVariables.split("&");
+      var arrByEqual=arrVariables[0].split("=");
+  
+
+
+      console.log(arrByEqual[1]);
+
+  </script>
+
+  <!-- Initialize Firebase, Connection to Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDmZGIIf2TAAogFKtx5_2V8a5QCw1p7rCQ",
+      authDomain: "appeggt.firebaseapp.com",
+      databaseURL: "https://appeggt.firebaseio.com",
+      projectId: "appeggt",
+      storageBucket: "appeggt.appspot.com",
+      messagingSenderId: "153702368965"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+</head>
+
+<body id="page-top">
+  <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+      <a class="navbar-brand mr-1" href="#" >Demo Test - Escuela John F. Kennedy</a>
+  </nav>
+  <div id="content-wrapper">
+      <div class="container-fluid">
+          <div class="jumbotron jumbotron-fluid">
+              <div class="container">
+                <h1 class="display-4" > Mesa No. <script> document.write(arrByEqual[1]); </script> </h1>
+                <p class="lead">Ingrese la cantidad de votos registrados </p>
+              </div>
+            </div>
+    
+            <div class="input-group input-group-lg">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-lg">Votos</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" id="qtyVotes">
+            </div>
+
+            <button type="button" class="btn btn-primary btn-lg btn-block" style="
+            margin-top: 20px;
+            margin-bottom: 10px;
+          " onclick="updateVotes()">Guardar</button>
+              
+         
+          
+      </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  
+  <script>
+    function updateVotes(){
+
+      var qtyVotes= document.getElementById("qtyVotes").value;
+      
+      firebase.database().ref('VotingTable/' + arrByEqual[1]).set({
+        code: arrByEqual[1],
+        fk_Coordinator: 61,
+        fk_VotingCenter : 51,
+        registered: 100,
+        status: "activo",
+        updated_at: "27/03/2019 10:00:00.10",
+        updated_by: "nobody",
+        votes: qtyVotes
+      },
+      function(error) {
+          if (error) {
+            // The write failed...
+          } else {
+            // Data saved successfully!
+            alert("El registro fue actualizado correctamente.");
+            location.href="demo_view_coordinator.html";
+          }
+      });
+      //alert("El registro fue actualizado correctamente.");
+      
+
+    }
+  </script>
+
+
+</body>
+
+
+</html>
