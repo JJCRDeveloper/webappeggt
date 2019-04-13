@@ -45,7 +45,7 @@
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+    <a class="navbar-brand mr-1" href="index.html">Inicio</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
@@ -71,7 +71,7 @@
           <span class="badge badge-danger">9+</span>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Accion</a>
           <a class="dropdown-item" href="#">Another action</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
@@ -127,7 +127,7 @@
           <li class="breadcrumb-item">
             <a href="#">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Overview</li>
+          <li class="breadcrumb-item active">Elecciones Generales Guatemala 2019</li>
         </ol>
 
         <!-- Icon Cards-->
@@ -175,13 +175,45 @@
             <div class="card mb-12" style="width: 100%; height: 100%;">
               <div class="card-header" style="width: 100%; height: 100%;">
                 <i class="fas fa-chart-pie"></i>
-                Elecciones Generales Guatemala 2019</div>
+                Grafica General</div>
                 <div class="card-body" id="piechart_3d" style="width: 100%; height: 100%;margin: 0 auto;display: block;" >
                 <canvas  width="100%" height="100"></canvas>
               </div>
               <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
             </div>
+
+            
+
+            
+
           </div>
+
+          <div class="col-lg-12" style="width: 100%; height: 100%; margin-top:20px;">
+            <div class="card mb-12" style="width: 100%; height: 100%;">
+              <div class="card-header" style="width: 100%; height: 100%;">
+                <i class="fas fa-chart-pie"></i>
+                Grafica Por Centro</div>
+                  
+                <div class="input-group">
+                  <select class="custom-select" id="inputGroupSelect04">
+                      <option selected>Elija centro...</option>
+                    <!-- 
+                    <option value="1">1. Testing Escuela Kennedy</option>
+                    <option value="2">2. Escuela Rafael</option>
+                    <option value="3">Three</option> -->
+                  </select>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" onclick="graficaxCentro()">Buscar</button>
+                  </div>
+                </div>
+
+                <div class="card-body" id="piechart_3dCentro" style="width: 100%; height: 100%;margin: 0 auto;display: block;" >
+                <canvas  width="100%" height="100"></canvas>
+              </div>
+              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            </div>
+
+         
         </div>
 
         <!-- DataTables Example -->
@@ -265,26 +297,25 @@
     $(".sidebar").toggleClass("toggled");
     
     var heightSize = document.getElementById('piechart_3d'); 
+    var heightSize2 = document.getElementById('piechart_3dCentro'); 
     if (screen.width < 1024){ 
         //document.write ("Pequeña") 
         heightSize.style.height = "100%";
+        heightSize2.style.height = "100%";
     }else{ 
         if (screen.width < 1280){ 
           //mediana
           heightSize.style.height = "300px";
+          heightSize2.style.height = "300px";
         } 
         else{
           //grande
           heightSize.style.height = "600px";
+          heightSize2.style.height = "600px";
         }
     }
     
     function drawChart() {
-
-  
-
-      //console.log(queryOneRef);
-      //var totalito=parseInt(document.getElementById("idTexto").innerHTML);
 
       var data = google.visualization.arrayToDataTable([
         ['Categoria', 'Cantidad'],
@@ -299,6 +330,26 @@
       };
 
       var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+      chart.draw(data, options);
+    }
+
+
+    function drawChartByCentro() {
+      
+      var data = google.visualization.arrayToDataTable([
+        ['Categoria', 'Cantidad'],
+        ['Abstencion',  pendingVotesxCentro ],
+        ['Votos',  totalVotesxCentro]
+      ]);
+
+
+      var options = {
+        title: titleGraficaxCentro,
+        is3D: true,
+        colors: ['#0080FF','#A9D0F5'],
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechart_3dCentro'));
       chart.draw(data, options);
     }
   </script>

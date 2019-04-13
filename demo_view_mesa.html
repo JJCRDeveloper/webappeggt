@@ -90,13 +90,14 @@
       
       firebase.database().ref('VotingTable/' + arrByEqual[1]).set({
         code: arrByEqual[1],
-        fk_Coordinator: 61,
-        fk_VotingCenter : 51,
+        idCoordinator: 61,
+        idVotingCenter : 51,
         registered: 100,
         status: "activo",
-        updated_at: "27/03/2019 10:00:00.10",
-        updated_by: "nobody",
-        votes: qtyVotes
+        updatedat: "27/03/2019 10:00:00.10",
+        updatedby: "nobody",
+        votes: qtyVotes,
+        status_idVotingCenter: "activo_51"
       },
       function(error) {
           if (error) {
