@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Voting Center</title>
+    <!-- Bootswatch theme-->
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body>
+<!--Navegation-->
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">Voting Center App</a>
+</nav>
+<div class="container">
+    <div id="App" class="row pt-4">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Voting Table</h4>
+                </div>
+                <form id="voting-form" class="card-body">
+                    <div class="form-group">
+                        <h6>Number Table</h6>
+                        <input type="number" id="code" min="345" max="410" placeholder="Code Table" class="form-control">
+                    </div>
+                    <div>
+                        <h6>Code Coordinator</h6>
+                        <input type="number" id="idCoordinator" min="1" max="25" step="1" placeholder="Code Coordinator" class="form-control">
+                    </div>
+                    <div>
+                        <h6>Code VotingCenter</h6> 
+                        <input type="number" id="idVotingTable" min="1" max="20" step="1" placeholder="Code Center" class="form-control">
+                    </div>
+                    <div>
+                        <h6>Registered</h6> 
+                        <input type="number" id="registered" min="1" max="300" step="1" placeholder="Registered" class="form-control">
+                    </div>
+                    <div>
+                        <h6>Votes</h6> 
+                        <input type="number" id="vote" min="1" max="300" step="1" placeholder="Number Votes" class="form-control">
+                    </div>
+                    <input type="submit" value="Save" class="btn btn-primary btn-block">
+                </form>
+            </div>
+        </div>
+        <div id="table-list" class="col-md-9"></div>
+    </div>
+</div>
+<script src="webapp.js"></script>
+</body>
+</html>
